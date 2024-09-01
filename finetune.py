@@ -60,9 +60,26 @@ def compute_metrics(eval_pred):
 training_args = TrainingArguments(
     output_dir="./results",
     num_train_epochs=2,
-    per_device_train_batch_size=2,
+    per_device_train_batch_size=128,
     save_steps=10_000,
     save_total_limit=2,
     logging_dir="./logs",
     eval_strategy="epoch", 
 )
+
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_train_dataset,
+    eval_dataset=tokenized_test_dataset,
+    data_collator=data_collator,
+    tokenizer=tokenizer,
+    compute_metrics=compute_metrics,
+)
+
+
+trainer.train()
+
+
+model.save_pretrained("./finetuned-model")
+tokenizer.save_pretrained("./finetuned-model")
