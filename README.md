@@ -3,6 +3,7 @@
 huggingface-cli login
 ```
 ### 2. 輸入 hugging_face access token ###
+ huggingface ：[](https://huggingface.co)
 ### 3. 準備 csv 檔案轉換成 json ###
 ```
 python convert_to_json.py
