@@ -1,4 +1,5 @@
 import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 model = AutoModelForCausalLM.from_pretrained("./finetuned-model")
 tokenizer = AutoTokenizer.from_pretrained("./finetuned-model")
